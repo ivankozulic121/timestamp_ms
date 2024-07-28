@@ -38,10 +38,12 @@ app.get("/api/:date?", (req,res) => {
   //console.log(date);
   
  { let date = new Date(Date.now())
+  if (date.toString == "Invalid Date") res.json({"error": "Invalid date"})
+  else {
   res.json(
     {"unix": +Date.now(), "utc":  date.toUTCString()})}
   
-
+  }
   else {
   let date = new Date(req.params.date);
   if (date.toString == "Invalid Date") res.json({"error": "Invalid date"})
