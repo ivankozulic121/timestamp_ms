@@ -36,6 +36,11 @@ app.get("/api/:date?", (req,res) => {
   //console.log(date.toString());
   //console.log(typeof(date));
   if( date.toString() == "Invalid Date") res.json({"error": "Invalid Date"})
+  
+  else if (date.toString == ""){
+
+res.json({"unix": +Date.now(), "utc": Date.now().toUTCString()})
+}
   else {
   res.json({"unix": +date, "utc": date.toUTCString()});}
   }
