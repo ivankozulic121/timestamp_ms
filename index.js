@@ -32,17 +32,23 @@ app.get("/api/:date?", (req,res) => {
 }
   //console.log(date);
   else{
-  let date = new Date(req.params.date);
+  if(!req.params.date)
   //console.log(date.toString());
   //console.log(typeof(date));
-  if( date.toString() == "Invalid Date") res.json({"error": "Invalid Date"})
+  //console.log(date);
   
-  else if (date.toString == ""){
+ { let date = new Date(Date.now())
+  res.json(
+    {"unix": +Date.now(), "utc":  date.toUTCString()})}
+  
 
-res.json({"unix": +Date.now(), "utc": Date.now().toUTCString()})
-}
   else {
-  res.json({"unix": +date, "utc": date.toUTCString()});}
+  let date = new Date(req.params.date);
+  if (date.toString == "Invalid Date") res.json({"error": "Invalid date"})
+  else{
+  res.json({"unix": +date, "utc": date.toUTCString()});
+}
+  }
   }
   
 })
